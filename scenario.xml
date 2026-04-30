@@ -14,7 +14,6 @@
         <x>20.0</x>
         <y>5.0</y>
       </point>
-      <lineMarking>solid</lineMarking>
     </leftBound>
     <rightBound>
       <point>
@@ -29,7 +28,6 @@
         <x>20.0</x>
         <y>0.0</y>
       </point>
-      <lineMarking>solid</lineMarking>
     </rightBound>
   <lanelet>
   <dynamicObstacle id="1213">

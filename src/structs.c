@@ -22,12 +22,15 @@ Shape make_shape(double length, double width) {
     return (Shape){.length = length, .width = width};
 }
 
-DynamicObstacle make_dynamic_obstacle(State initial_state, Shape shape) {
-    return (DynamicObstacle){.initial_state = initial_state, .shape = shape};
+DynamicObstacle make_dynamic_obstacle(size_t id, enum DynamicObstacleType type, State initial_state,
+                                      Shape shape) {
+    return (DynamicObstacle){
+        .id = id, .type = type, .initial_state = initial_state, .shape = shape};
 }
 
-Lanelet make_lanelet_empty(size_t bound_initial_capacity) {
+Lanelet make_lanelet_empty(size_t id, size_t bound_initial_capacity) {
     Lanelet lanelet = {0};
+    lanelet.id = id;
     PointArray_reserve(&lanelet.left_bound, bound_initial_capacity);
     PointArray_reserve(&lanelet.right_bound, bound_initial_capacity);
     return lanelet;

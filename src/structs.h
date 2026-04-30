@@ -17,6 +17,7 @@ typedef struct {
 typedef struct {
     PointArray left_bound;
     PointArray right_bound;
+    size_t id;
 } Lanelet;
 
 typedef struct {
@@ -40,9 +41,16 @@ typedef struct {
 } Shape;
 
 // -- Dynamic obstacle --
+enum DynamicObstacleType {
+    CAR,
+    PEDESTRIAN,
+};
+
 typedef struct {
     State initial_state;
     Shape shape;
+    enum DynamicObstacleType type;
+    size_t id;
 } DynamicObstacle;
 
 typedef struct {
@@ -60,9 +68,10 @@ typedef struct {
 Point make_point(double x, double y);
 State make_state(double x, double y, double orientation, double velocity, size_t time);
 Shape make_shape(double length, double width);
-DynamicObstacle make_dynamic_obstacle(State initial_state, Shape shape);
+DynamicObstacle make_dynamic_obstacle(size_t id, enum DynamicObstacleType type, State initial_state,
+                                      Shape shape);
 
-Lanelet make_lanelet_empty(size_t bound_initial_capacity);
+Lanelet make_lanelet_empty(size_t id, size_t bound_initial_capacity);
 void destroy_lanelet(Lanelet* lanelet);
 
 CRScenario make_cr_scenario_empty(size_t lanelet_initial_capacity,

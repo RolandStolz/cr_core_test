@@ -4,7 +4,7 @@
 int main(void) {
     Point point = make_point(1.0, 0.0);
     Lanelet empty_lanelet = (Lanelet){0};
-    Lanelet lanelet = make_lanelet_empty(2);
+    Lanelet lanelet = make_lanelet_empty(0, 2);
     PointArray_push(&lanelet.left_bound, make_point(1.0, 1.0));
     PointArray_push(&lanelet.left_bound, make_point(2.0, 2.0));
 
