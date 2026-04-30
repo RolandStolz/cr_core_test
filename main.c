@@ -1,22 +1,25 @@
+#include <parser.h>
 #include <stdio.h>
 #include <structs.h>
 
 int main(void) {
-    Point point = make_point(1.0, 0.0);
-    Lanelet empty_lanelet = (Lanelet){0};
-    Lanelet lanelet = make_lanelet_empty(0, 2);
-    PointArray_push(&lanelet.left_bound, make_point(1.0, 1.0));
-    PointArray_push(&lanelet.left_bound, make_point(2.0, 2.0));
+    CRScenario scenario = parse_cr_scenario("scenario.xml");
 
-    CRScenario scenario = make_cr_scenario_empty(2, 2);
-    LaneletArray_push(&scenario.lanelets, lanelet);
+    printf("Lanelets: %zu\n", scenario.lanelets.count);
+    for (size_t i = 0; i < scenario.lanelets.count; i++) {
+        Lanelet* l = LaneletArray_at(&scenario.lanelets, i);
+        printf("  id=%zu  left=%zu pts  right=%zu pts\n", l->id, l->left_bound.count,
+               l->right_bound.count);
+    }
 
-    printf("Point coordinates: (%.2f, %.2f)\n", point.x, point.y);
-    printf("Lanelet left bound size: %zu\n", lanelet.left_bound.count);
+    printf("Dynamic obstacles: %zu\n", scenario.dynamicObstacles.count);
+    for (size_t i = 0; i < scenario.dynamicObstacles.count; i++) {
+        DynamicObstacle* obs = DynamicObstacleArray_at(&scenario.dynamicObstacles, i);
+        printf("  id=%zu  type=%d  pos=(%.2f, %.2f)  vel=%.2f\n", obs->id, obs->type,
+               obs->initial_state.position.x, obs->initial_state.position.y,
+               obs->initial_state.velocity);
+    }
 
-    Point laneletPoint = *PointArray_at(&lanelet.left_bound, 0);
-    printf("Lanelet left bound point 1: (%.2f, %.2f)\n", laneletPoint.x, laneletPoint.y);
-
-    printf("Number of dynamic obstacles in scenario: %zu\n", scenario.dynamicObstacles.count);
-    printf("Number of lanelets in scenario: %zu\n", scenario.lanelets.count);
+    free_cr_scenario(&scenario);
+    return 0;
 }

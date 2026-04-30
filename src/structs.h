@@ -1,3 +1,6 @@
+#ifndef STRUCTS_H
+#define STRUCTS_H
+
 #include <dynamic_arrays.h>
 #include <stddef.h>
 
@@ -72,11 +75,14 @@ DynamicObstacle make_dynamic_obstacle(size_t id, enum DynamicObstacleType type, 
                                       Shape shape);
 
 Lanelet make_lanelet_empty(size_t id, size_t bound_initial_capacity);
-void destroy_lanelet(Lanelet* lanelet);
+void free_lanelet(Lanelet* lanelet);
 
 CRScenario make_cr_scenario_empty(size_t lanelet_initial_capacity,
                                   size_t dynamic_obstacle_initial_capacity);
+void free_cr_scenario(CRScenario* scenario);
 
 DECLARE_DYNAMIC_ARRAY_FUNCS(PointArray, Point, PointArray);
 DECLARE_DYNAMIC_ARRAY_FUNCS(LaneletArray, Lanelet, LaneletArray);
 DECLARE_DYNAMIC_ARRAY_FUNCS(DynamicObstacleArray, DynamicObstacle, DynamicObstacleArray);
+
+#endif

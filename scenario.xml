@@ -29,7 +29,7 @@
         <y>0.0</y>
       </point>
     </rightBound>
-  <lanelet>
+  </lanelet>
   <dynamicObstacle id="1213">
   <type>car</type>
   <shape>

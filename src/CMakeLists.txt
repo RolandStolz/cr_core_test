@@ -2,6 +2,8 @@
 set(lib_files
     ${PROJECT_SOURCE_DIR}/src/structs.h
     ${PROJECT_SOURCE_DIR}/src/structs.c
+    ${PROJECT_SOURCE_DIR}/src/parser.h
+    ${PROJECT_SOURCE_DIR}/src/parser.c
 )
 
 add_library(${c_lib_name}

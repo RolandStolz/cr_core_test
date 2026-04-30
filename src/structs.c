@@ -4,7 +4,7 @@
 #include <structs.h>
 
 DEFINE_DYNAMIC_ARRAY_FUNCS(PointArray, Point, PointArray, NULL);
-DEFINE_DYNAMIC_ARRAY_FUNCS(LaneletArray, Lanelet, LaneletArray, destroy_lanelet);
+DEFINE_DYNAMIC_ARRAY_FUNCS(LaneletArray, Lanelet, LaneletArray, free_lanelet);
 DEFINE_DYNAMIC_ARRAY_FUNCS(DynamicObstacleArray, DynamicObstacle, DynamicObstacleArray, NULL);
 
 Point make_point(double x, double y) {
@@ -44,8 +44,14 @@ CRScenario make_cr_scenario_empty(size_t lanelet_initial_capacity,
     return scenario;
 }
 
-void destroy_lanelet(Lanelet* lanelet) {
+void free_lanelet(Lanelet* lanelet) {
     assert(lanelet != NULL);
     PointArray_free(&lanelet->left_bound);
     PointArray_free(&lanelet->right_bound);
+}
+
+void free_cr_scenario(CRScenario* scenario) {
+    assert(scenario != NULL);
+    LaneletArray_free(&scenario->lanelets);
+    DynamicObstacleArray_free(&scenario->dynamicObstacles);
 }
