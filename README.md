@@ -1,6 +1,7 @@
 ## Structure
 `src`: C core
 `bindings/python`: Python bindings
+`bindings/rust`: Rust bindings
 `examples`: Examples
 
 
@@ -30,3 +31,10 @@ Disadvantages:
 - raw bindings mimi c code structure
 - therefore, you have to define separate pythonic objects
 
+## Rust bindings
+The bindings can be installed with `cargo build` in the root directory. Using the `cc` crate, the C library is compiled during the rust build process.
+
+We use `bindgen` to automatically create rust bindings as defined in `bindings/rust/build.rs`, which generates structs and unsafe functions.
+We can directly call the unsafe functions, or define wrapper functions for the structs, as shown in `examples/main.rs`.
+
+Honestly, a rather straight-forward and pleasent experience!
