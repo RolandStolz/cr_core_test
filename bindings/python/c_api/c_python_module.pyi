@@ -1,0 +1,6 @@
+class Point:
+    x: float
+    y: float
+    def __init__(self, x: float, y: float) -> None: ...
+
+def add(a: Point, b: Point) -> Point: ...

@@ -6,13 +6,21 @@ set(CMAKE_C_STANDARD_REQUIRED ON)
 
 set(c_lib_name "cr_lib")
 
+
+option(python_bind_with_c_api "Build Python bindings using the C API" ON)
+
+
 option(ENABLE_ASAN "Enable AddressSanitizer" ON)
-if(ENABLE_ASAN)
+if(ENABLE_ASAN AND NOT SKBUILD)
     add_compile_options(-fsanitize=address -g)
     add_link_options(-fsanitize=address)
 endif()
 
 add_subdirectory(src)
+
+if (python_bind_with_c_api)
+    add_subdirectory(bindings/python/c_api)
+endif ()
 
 # Define the executable
 add_executable(test_app main.c)
