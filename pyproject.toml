@@ -1,5 +1,5 @@
 [build-system]
-requires = ["scikit-build-core", "mypy"]
+requires = ["scikit-build-core", "cffi"]
 build-backend = "scikit_build_core.build"
 
 [project]
@@ -8,9 +8,8 @@ version = "0.1.0"
 description = "Add your description here"
 readme = "README.md"
 requires-python = ">=3.13"
-dependencies = []
 
-[dependency-groups]
-dev = [
-    "mypy>=1.20.2",
+dependencies = [
+    "cffi>=2.0.0",
+    "setuptools>=82.0.1",
 ]
