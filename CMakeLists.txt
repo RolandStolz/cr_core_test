@@ -17,13 +17,10 @@ if(ENABLE_ASAN AND NOT SKBUILD)
 endif()
 
 add_subdirectory(src)
+add_subdirectory(examples)
 
 if (python_bind_with_c_api)
     add_subdirectory(bindings/python/c_api)
 else ()
     add_subdirectory(bindings/python/cffi)
 endif ()
-
-# Define the executable
-add_executable(test_app main.c)
-target_link_libraries(test_app PRIVATE ${c_lib_name})
