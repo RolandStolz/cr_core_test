@@ -1,0 +1,15 @@
+[package]
+name = "c_rust_module"
+version = "0.1.0"
+edition = "2024"
+build = "bindings/rust/build.rs"
+
+[build-dependencies]
+bindgen = "0.72.1"
+
+[lib]
+path = "bindings/rust/src/lib.rs"
+
+[[bin]]
+name = "main"
+path = "examples/main.rs"
