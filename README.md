@@ -1,8 +1,8 @@
 ## Structure
-`src`: C core
-`bindings/python`: Python bindings
-`bindings/rust`: Rust bindings
-`examples`: Examples
+- `src`: C core
+- `bindings/python`: Python bindings
+- `bindings/rust`: Rust bindings
+- `examples`: Examples
 
 
 ## Python bindings
