@@ -1,8 +1,8 @@
 fn main() {
-    let lib_path = "src";
-
-    println!("cargo:rustc-link-lib=cr_lib");
-    println!("cargo:rustc-link-search=native={}", lib_path);
+    cc::Build::new()
+        .files(["src/functions.c", "src/structs.c"])
+        .include("src")
+        .compile("cr_lib");
 
     let bindings_c = bindgen::Builder::default()
         .header("src/structs.h")

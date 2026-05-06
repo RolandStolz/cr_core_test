@@ -6,6 +6,7 @@ build = "bindings/rust/build.rs"
 
 [build-dependencies]
 bindgen = "0.72.1"
+cc = "1"
 
 [lib]
 path = "bindings/rust/src/lib.rs"
