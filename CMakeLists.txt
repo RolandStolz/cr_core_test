@@ -7,7 +7,7 @@ set(CMAKE_C_STANDARD_REQUIRED ON)
 set(c_lib_name "cr_lib")
 
 
-option(python_bind_with_c_api "Build Python bindings using the C API" OFF)
+option(python_bind_with_c_api "Build Python bindings using the C API" ON)
 
 
 option(ENABLE_ASAN "Enable AddressSanitizer" ON)

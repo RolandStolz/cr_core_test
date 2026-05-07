@@ -1,5 +1,6 @@
 #include <assert.h>
 #include <stddef.h>
+#include <stdio.h>
 #include <stdlib.h>
 #include <structs.h>
 
@@ -8,6 +9,7 @@ DEFINE_DYNAMIC_ARRAY_FUNCS(LaneletArray, Lanelet, LaneletArray, free_lanelet);
 DEFINE_DYNAMIC_ARRAY_FUNCS(DynamicObstacleArray, DynamicObstacle, DynamicObstacleArray, NULL);
 
 Point make_point(double x, double y) {
+    printf("Calling make point\n");
     return (Point){.x = x, .y = y};
 }
 

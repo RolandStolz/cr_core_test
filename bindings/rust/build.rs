@@ -1,6 +1,9 @@
 fn main() {
+
+    let c_src_files = vec!["src/functions.c", "src/structs.c"];
+
     cc::Build::new()
-        .files(["src/functions.c", "src/structs.c"])
+        .files(&c_src_files)
         .include("src")
         .compile("cr_lib");
 
@@ -18,4 +21,9 @@ fn main() {
     bindings_c
         .write_to_file("bindings/rust/src/cr_c_bindings.rs")
         .expect("Couldn't write C bindings!");
+
+    // Needs to be done for headers as well
+    for file in &c_src_files {
+        println!("cargo:rerun-if-changed={}", file);
+    }
 }
