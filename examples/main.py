@@ -1,5 +1,4 @@
 import c_python_module
-import numpy as np
 
 
 def main():
@@ -7,13 +6,20 @@ def main():
     print(p)
     print(p.x)
     print(p.y)
+    print(f"Address {p.addr()}")
 
     p2 = c_python_module.add(p, p)
     print(p2.x)
     print(p2.y)
 
-    a = np.zeros(2)
-    np.linalg.norm(a)
+    state = c_python_module.State(p, 0, 0, 0)
+    print(state)
+    print(f"Address {state.addr()}")
+    print(state.position)
+
+    state2 = state
+    print(state2)
+    print(f"Address {state2.addr()}")
 
 
 if __name__ == "__main__":

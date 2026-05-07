@@ -13,6 +13,7 @@ fn main() {
         .clang_arg("-Isrc")
         // Classes
         .allowlist_type("Point")
+        .allowlist_type("State")
         // Functions
         .allowlist_function("Point_add")
         .generate()

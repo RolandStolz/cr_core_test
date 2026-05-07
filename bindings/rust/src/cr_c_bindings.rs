@@ -13,6 +13,23 @@ const _: () = {
     ["Offset of field: Point::x"][::std::mem::offset_of!(Point, x) - 0usize];
     ["Offset of field: Point::y"][::std::mem::offset_of!(Point, y) - 8usize];
 };
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct State {
+    pub position: Point,
+    pub orientation: f64,
+    pub velocity: f64,
+    pub time: usize,
+}
+#[allow(clippy::unnecessary_operation, clippy::identity_op)]
+const _: () = {
+    ["Size of State"][::std::mem::size_of::<State>() - 40usize];
+    ["Alignment of State"][::std::mem::align_of::<State>() - 8usize];
+    ["Offset of field: State::position"][::std::mem::offset_of!(State, position) - 0usize];
+    ["Offset of field: State::orientation"][::std::mem::offset_of!(State, orientation) - 16usize];
+    ["Offset of field: State::velocity"][::std::mem::offset_of!(State, velocity) - 24usize];
+    ["Offset of field: State::time"][::std::mem::offset_of!(State, time) - 32usize];
+};
 unsafe extern "C" {
     pub fn Point_add(a: Point, b: Point) -> Point;
 }
