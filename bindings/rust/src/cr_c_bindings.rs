@@ -15,6 +15,38 @@ const _: () = {
 };
 #[repr(C)]
 #[derive(Debug, Copy, Clone)]
+pub struct PointArray {
+    pub data: *mut Point,
+    pub count: usize,
+    pub capacity: usize,
+}
+#[allow(clippy::unnecessary_operation, clippy::identity_op)]
+const _: () = {
+    ["Size of PointArray"][::std::mem::size_of::<PointArray>() - 24usize];
+    ["Alignment of PointArray"][::std::mem::align_of::<PointArray>() - 8usize];
+    ["Offset of field: PointArray::data"][::std::mem::offset_of!(PointArray, data) - 0usize];
+    ["Offset of field: PointArray::count"][::std::mem::offset_of!(PointArray, count) - 8usize];
+    ["Offset of field: PointArray::capacity"]
+        [::std::mem::offset_of!(PointArray, capacity) - 16usize];
+};
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
+pub struct Lanelet {
+    pub left_bound: PointArray,
+    pub right_bound: PointArray,
+    pub id: usize,
+}
+#[allow(clippy::unnecessary_operation, clippy::identity_op)]
+const _: () = {
+    ["Size of Lanelet"][::std::mem::size_of::<Lanelet>() - 56usize];
+    ["Alignment of Lanelet"][::std::mem::align_of::<Lanelet>() - 8usize];
+    ["Offset of field: Lanelet::left_bound"][::std::mem::offset_of!(Lanelet, left_bound) - 0usize];
+    ["Offset of field: Lanelet::right_bound"]
+        [::std::mem::offset_of!(Lanelet, right_bound) - 24usize];
+    ["Offset of field: Lanelet::id"][::std::mem::offset_of!(Lanelet, id) - 48usize];
+};
+#[repr(C)]
+#[derive(Debug, Copy, Clone)]
 pub struct State {
     pub position: Point,
     pub orientation: f64,
@@ -30,6 +62,30 @@ const _: () = {
     ["Offset of field: State::velocity"][::std::mem::offset_of!(State, velocity) - 24usize];
     ["Offset of field: State::time"][::std::mem::offset_of!(State, time) - 32usize];
 };
+unsafe extern "C" {
+    pub fn PointArray_init(arr: *mut PointArray);
+}
+unsafe extern "C" {
+    pub fn PointArray_free(arr: *mut PointArray);
+}
+unsafe extern "C" {
+    pub fn PointArray_reserve(arr: *mut PointArray, new_capacity: usize) -> bool;
+}
+unsafe extern "C" {
+    pub fn PointArray_push(arr: *mut PointArray, value: Point) -> bool;
+}
+unsafe extern "C" {
+    pub fn PointArray_pop(arr: *mut PointArray, out: *mut Point) -> bool;
+}
+unsafe extern "C" {
+    pub fn PointArray_at(arr: *mut PointArray, index: usize) -> *mut Point;
+}
+unsafe extern "C" {
+    pub fn PointArray_clear(arr: *mut PointArray);
+}
+unsafe extern "C" {
+    pub fn PointArray_shrink_to_fit(arr: *mut PointArray) -> bool;
+}
 unsafe extern "C" {
     pub fn Point_add(a: Point, b: Point) -> Point;
 }

@@ -13,7 +13,9 @@ fn main() {
         .clang_arg("-Isrc")
         // Classes
         .allowlist_type("Point")
+        .allowlist_function("PointArray_.*")
         .allowlist_type("State")
+        .allowlist_type("Lanelet")
         // Functions
         .allowlist_function("Point_add")
         .generate()

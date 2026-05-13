@@ -1,4 +1,5 @@
 find_package(Python COMPONENTS Interpreter Development.Module REQUIRED)
+message(STATUS "Python_EXECUTABLE: ${Python_EXECUTABLE}")
 
 Python_add_library(c_python_module MODULE 
     ${PROJECT_SOURCE_DIR}/bindings/python/c_api/cr_module.c
